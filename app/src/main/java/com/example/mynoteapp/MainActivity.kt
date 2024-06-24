@@ -39,12 +39,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Set up the toolbar
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes)
@@ -114,7 +112,6 @@ class MainActivity : AppCompatActivity() {
                     notesAdapter.submitList(notes)
                     progressBar.visibility = View.GONE
 
-                    // Show the "Start with creating a note :)" message if there are no notes
                     textViewNoNotes.visibility = if (notes.isEmpty()) View.VISIBLE else View.GONE
                 }
                 .addOnFailureListener { e ->

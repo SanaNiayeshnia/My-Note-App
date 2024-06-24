@@ -16,15 +16,12 @@ class SplashActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Check if the user is already logged in
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            // If the user is logged in, redirect to MainActivity
             startActivity(Intent(this, MainActivity::class.java))
         } else {
-            // If the user is not logged in, redirect to LoginActivity
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        finish() // Close SplashActivity
+        finish()
     }
 }

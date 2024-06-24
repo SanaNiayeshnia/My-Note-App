@@ -29,13 +29,12 @@ class AddEditNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
 
-        // Initialize views
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Show back button in the toolbar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener {
-            onBackPressed() // Navigate back when back button is clicked
+            onBackPressed()
         }
 
         editTextTitle = findViewById(R.id.editTextTitle)
@@ -52,7 +51,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         if (noteId != null && noteId!!.isNotEmpty()) {
             loadNote()
         } else {
-            // Show the EditText fields and buttons for new note
             showNoteDetails()
         }
 
@@ -66,7 +64,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun loadNote() {
-        progressBar.visibility = View.VISIBLE // Show progress spinner
+        progressBar.visibility = View.VISIBLE
 
         noteId?.let { id ->
             db.collection("notes").document(id)
@@ -75,24 +73,23 @@ class AddEditNoteActivity : AppCompatActivity() {
                     editTextTitle.setText(document.getString("title"))
                     editTextContent.setText(document.getString("content"))
                     buttonDelete.visibility = View.VISIBLE
-                    progressBar.visibility = View.GONE // Hide progress spinner
+                    progressBar.visibility = View.GONE
 
-                    // Show the EditText fields and buttons after loading note
+
                     showNoteDetails()
                 }
                 .addOnFailureListener { e ->
-                    // Handle error while loading note
+
                     Toast.makeText(this, "Error loading note: ${e.message}", Toast.LENGTH_SHORT).show()
-                    progressBar.visibility = View.GONE // Hide progress spinner on failure
+                    progressBar.visibility = View.GONE
                 }
         }
     }
 
     private fun showNoteDetails() {
-        // Show note title, content, and buttons
         editTextTitle.visibility = View.VISIBLE
         editTextContent.visibility = View.VISIBLE
-        findViewById<View>(R.id.buttonLayout).visibility = View.VISIBLE // Show buttonLayout
+        findViewById<View>(R.id.buttonLayout).visibility = View.VISIBLE
     }
 
     private fun saveNote() {
@@ -101,37 +98,35 @@ class AddEditNoteActivity : AppCompatActivity() {
         val uid = auth.currentUser?.uid
 
         if (title.isNotEmpty() && content.isNotEmpty() && uid != null) {
-            progressBar.visibility = View.VISIBLE // Show progress spinner
+            progressBar.visibility = View.VISIBLE
 
             val note = hashMapOf(
                 "title" to title,
                 "content" to content,
                 "timestamp" to Timestamp.now(),
-                "uid" to uid // Add user ID to note
+                "uid" to uid
             )
 
             if (noteId != null) {
                 db.collection("notes").document(noteId!!)
                     .set(note)
                     .addOnSuccessListener {
-                        progressBar.visibility = View.GONE // Hide progress spinner
-                        finish() // Close the activity and go back to the previous one
+                        progressBar.visibility = View.GONE
+                        finish()
                     }
                     .addOnFailureListener { e ->
-                        progressBar.visibility = View.GONE // Hide progress spinner
-                        // Handle error while saving note
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Error saving note: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 db.collection("notes")
                     .add(note)
                     .addOnSuccessListener {
-                        progressBar.visibility = View.GONE // Hide progress spinner
-                        finish() // Close the activity and go back to the previous one
+                        progressBar.visibility = View.GONE
+                        finish()
                     }
                     .addOnFailureListener { e ->
-                        progressBar.visibility = View.GONE // Hide progress spinner
-                        // Handle error while saving note
+                        progressBar.visibility = View.GONE
                         Toast.makeText(this, "Error saving note: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             }
@@ -142,15 +137,15 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun deleteNote() {
         noteId?.let { id ->
-            progressBar.visibility = View.VISIBLE // Show progress spinner
+            progressBar.visibility = View.VISIBLE
             db.collection("notes").document(id)
                 .delete()
                 .addOnSuccessListener {
-                    progressBar.visibility = View.GONE // Hide progress spinner
-                    finish() // Close the activity and go back to the previous one
+                    progressBar.visibility = View.GONE
+                    finish()
                 }
                 .addOnFailureListener { e ->
-                    progressBar.visibility = View.GONE // Hide progress spinner
+                    progressBar.visibility = View.GONE
                     // Handle error while deleting note
                     Toast.makeText(this, "Error deleting note: ${e.message}", Toast.LENGTH_SHORT).show()
                 }

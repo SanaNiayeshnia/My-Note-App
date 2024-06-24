@@ -31,10 +31,9 @@ class SignUpActivity : AppCompatActivity() {
         supportActionBar?.title = ""
 
         toolbar.setNavigationOnClickListener {
-            finish() // This will close the current activity and return to the previous one
+            finish()
         }
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
         editTextDisplayName = findViewById(R.id.editTextDisplayName)
@@ -51,7 +50,6 @@ class SignUpActivity : AppCompatActivity() {
             val confirmPassword = editTextConfirmPassword.text.toString()
 
             if (password == confirmPassword) {
-                // Show progress bar before signing up
                 progressBar.visibility = ProgressBar.VISIBLE
                 signUpUser(displayName, email, password)
             } else {
@@ -63,11 +61,9 @@ class SignUpActivity : AppCompatActivity() {
     private fun signUpUser(displayName: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
-                // Hide progress bar after sign-up process completes
                 progressBar.visibility = ProgressBar.GONE
 
                 if (task.isSuccessful) {
-                    // Update user profile with display name
                     val user = auth.currentUser
                     user?.let {
                         val profileUpdates = UserProfileChangeRequest.Builder()
@@ -83,11 +79,10 @@ class SignUpActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    // Navigate to MainActivity
                                     val intent = Intent(this, MainActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
-                                    finish() // Finish this activity so the user cannot go back to it
+                                    finish()
 
                                 } else {
                                     Toast.makeText(

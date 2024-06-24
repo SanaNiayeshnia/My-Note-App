@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Toolbar for the app with custom styles applied -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -11,7 +10,6 @@
         android:theme="@style/AppTheme.Toolbar"
         android:layout_alignParentTop="true">
 
-        <!-- App title -->
         <TextView
             android:id="@+id/appTitle"
             android:layout_width="wrap_content"
@@ -23,7 +21,6 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginStart="8dp" />
 
-        <!-- Progress spinner (ProgressBar) with custom color -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -36,7 +33,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Email EditText -->
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
@@ -48,7 +44,6 @@
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
-    <!-- Password EditText -->
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
@@ -60,7 +55,6 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <!-- Login Button -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
@@ -72,7 +66,6 @@
         android:text="Login"
         style="@style/CustomButtonStyle" />
 
-    <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"

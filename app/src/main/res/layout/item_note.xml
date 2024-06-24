@@ -9,7 +9,6 @@
     android:layout_marginEnd="16dp"
     android:background="@drawable/note_item_background">
 
-    <!-- Title -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
@@ -20,7 +19,6 @@
         android:layout_marginTop="8dp"
         android:text="Note Title" />
 
-    <!-- Content -->
     <TextView
         android:id="@+id/textViewContent"
         android:layout_width="match_parent"
@@ -33,7 +31,6 @@
         android:textColor="#212121"
         android:text="Note content goes here." />
 
-    <!-- Timestamp -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

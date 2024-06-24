@@ -40,16 +40,14 @@ class NotesAdapter(private val onNoteClick: (Note) -> Unit) : RecyclerView.Adapt
         }
 
         fun bind(note: Note) {
-            // Bind data to views
             textViewTitle.text = note.title
             textViewContent.text = if (note.content.length > 50) {
-                "${note.content.substring(0, 50)}..." // Display first 50 characters with ellipsis
+                "${note.content.substring(0, 50)}..."
             } else {
-                note.content // Display full content if it's less than or equal to 50 characters
+                note.content
             }
             textViewTimestamp.text = note.timestamp
 
-            // Apply background drawable to the item view
             itemView.setBackgroundResource(R.drawable.note_item_background)
         }
     }
