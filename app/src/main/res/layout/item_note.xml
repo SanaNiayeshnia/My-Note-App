@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/note_item_background">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:layout_marginTop="8dp"
+        android:text="Note Title" />
+
+    <!-- Content -->
+    <TextView
+        android:id="@+id/textViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="#212121"
+        android:text="Note content goes here." />
+
+    <!-- Timestamp -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+            android:paddingBottom="8dp"
+        android:textColor="#546E7A"
+        android:text="Timestamp goes here." />
+    </RelativeLayout>
+</LinearLayout>
